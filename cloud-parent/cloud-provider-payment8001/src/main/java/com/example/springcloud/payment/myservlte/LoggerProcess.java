@@ -1,6 +1,7 @@
 package com.example.springcloud.payment.myservlte;
 
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -16,6 +17,7 @@ import java.util.Arrays;
  * @date 2020/3/10 8:55
  */
 @Aspect
+@Slf4j
 public class LoggerProcess {
 
     private final Gson gson = new Gson();
@@ -37,7 +39,7 @@ public class LoggerProcess {
             String reuslt = new StringBuilder(method.getDeclaringClass().getName()).append(".").append(method.getName())
                     .append("paramters={").append(parameters).append("}").toString();
 
-
+            log.info("result:{},parameters{},cost:{}",object,reuslt,costTime);
         }
         return object;
     }
